@@ -1,0 +1,23 @@
+﻿<section class="card">
+  <h1>My Tasks</h1>
+  <div class="filters">
+    <button [class.on]="filter() === 'all'" (click)="setFilter('all')">All</button>
+    <button [class.on]="filter() === 'done'" (click)="setFilter('done')">Done</button>
+    <button [class.on]="filter() === 'pending'" (click)="setFilter('pending')">Pending</button>
+  </div>
+  @if (tasks().length > 0) {
+    <ul class="task-list">
+      @for (task of tasks(); track task.id) {
+        <li class="task">
+          <span class="task-title">{{ task.title }}</span>
+          @switch (task.done) {
+            @case (true) { <span class="badge done">Done</span> }
+            @default { <span class="badge pending">Pending</span> }
+          }
+        </li>
+      }
+    </ul>
+  } @else {
+    <p>No tasks in this filter.</p>
+  }
+</section>

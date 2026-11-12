@@ -1,0 +1,18 @@
+﻿<section class="card">
+  <h1>Task Statistics</h1>
+  <div class="stat-grid">
+    @for (c of cards; track c.label) {
+      <div class="stat" [class]="'stat ' + c.kind">
+        <span class="stat-value">{{ c.value }}</span>
+        <span class="stat-label">{{ c.label }}</span>
+      </div>
+    }
+  </div>
+  @if (total > 0) {
+    <p class="progress-text">{{ percent }}% of tasks completed</p>
+    <div class="progress"><div class="bar" [style.width.%]="percent"></div></div>
+  } @else {
+    <p>No tasks to measure yet.</p>
+  }
+  <a class="btn" routerLink="/">Back to Tasks</a>
+</section>
